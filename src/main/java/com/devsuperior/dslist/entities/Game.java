@@ -2,8 +2,10 @@ package com.devsuperior.dslist.entities;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -11,10 +13,12 @@ import jakarta.persistence.Table;
 @Table(name = "tb_game")
 public class Game {
 	
-	@Id
-	@GeneratedValue	
+	@Id	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Long id;
-	private String title;
+    private String title;
+    
+    @Column(name = "game_year")
 	private Integer year;
 	private String genre;
 	private String platforms;
@@ -26,7 +30,7 @@ public class Game {
 	}
 	
 	public Game(Long id, String title, Integer year, String genre, String platforms, String imgUrl, String shortDescription,
-			String longDescription) {
+			String longDescription) {		
 		this.id = id;
 		this.title = title;
 		this.year = year;
@@ -117,6 +121,4 @@ public class Game {
 		Game other = (Game) obj;
 		return Objects.equals(id, other.id);
 	}
-
-
 }
